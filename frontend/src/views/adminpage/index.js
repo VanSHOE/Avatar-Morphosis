@@ -79,7 +79,7 @@ const AdminPage = () => {
             show_all: true
         };
         axios
-            .post('http://https://mernvendorbuyer.me:4000/upload/get_result', data, {
+            .post('http://https://https://mernvendorbuyer.me/api/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -121,7 +121,7 @@ const AdminPage = () => {
                                 <Grid item>
                                     <LoadingButton
                                         onClick={() => {
-                                            window.open('http://https://mernvendorbuyer.me:4000/' + result.path);
+                                            window.open('http://https://https://mernvendorbuyer.me/api/' + result.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
@@ -138,7 +138,7 @@ const AdminPage = () => {
                                                 id: result.id
                                             };
                                             axios
-                                                .post('http://https://mernvendorbuyer.me:4000/upload/del_result', item2send, {
+                                                .post('http://https://https://mernvendorbuyer.me/api/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {

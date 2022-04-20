@@ -248,7 +248,7 @@ router.get("/get_user", (req, res) => {
 
 router.post("/test", auth, async (req, res) => {
   var obj2 = {
-    url: "http://https://mernvendorbuyer.me:4000/uploads/result.mp4",
+    url: "http://https://https://mernvendorbuyer.me/api/uploads/result.mp4",
     user: req.user,
   };
   // Sleep for 5 seconds
@@ -368,7 +368,8 @@ router.post("/modelize", auth, async (req, res) => {
                   .then((final_result) => {
                     var obj2 = {
                       url:
-                        "http://https://mernvendorbuyer.me:4000/" + saved_url,
+                        "http://https://https://mernvendorbuyer.me/api/" +
+                        saved_url,
                       id: final_result.id,
                     };
                     res.status(200).json(obj2);

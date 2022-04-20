@@ -20,7 +20,7 @@ import Alert from '@mui/material/Alert';
 const Feedback = () => {
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-    const [submitFeed , setSubmitFeed]= useState('');
+    const [submitFeed, setSubmitFeed] = useState('');
     const useStyles = makeStyles(() => ({
         input1: {
             height: 50
@@ -37,7 +37,7 @@ const Feedback = () => {
             feedback: desc
         };
         axios
-            .post('http://https://mernvendorbuyer.me:4000/user/feedback', data, {
+            .post('http://https://https://mernvendorbuyer.me/api/user/feedback', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -82,9 +82,11 @@ const Feedback = () => {
                                             Submit
                                         </Button>
                                     </Grid>
-                                    {submitFeed &&
-                                        <Alert variant="filled" severity="success">Your Response are Submitted!</Alert>
-                                    }
+                                    {submitFeed && (
+                                        <Alert variant="filled" severity="success">
+                                            Your Response are Submitted!
+                                        </Alert>
+                                    )}
                                     <Grid item xs={12}>
                                         <Divider />
                                     </Grid>
