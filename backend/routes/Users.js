@@ -12,6 +12,8 @@ const router = Router();
 import aws from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
+import Feedback from "../models/Feedback.js";
+
 // import multer from
 
 const s3 = new aws.S3({
@@ -244,4 +246,36 @@ router.get("/get_details", auth, async (req, res) => {
       res.status(400).json({ msg: err.message });
     });
 });
+
+router.post("/feedback", auth, async (req, res) => {
+  const { feedback } = req.body;
+  console.log(req.body);
+  // Simple validation
+  if (!feedback) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+
+  try {
+    const user = await User.findOne({ id: req.user.id });
+    if (!user) throw Error("User does not exist");
+
+    const newFeedback = new Feedback({
+      id: uuid(),
+      user_id: user.id,
+      feedback,
+    });
+
+    const savedFeedback = await newFeedback.save();
+    if (!savedFeedback) throw Error("Something went wrong saving the feedback");
+
+    res.status(200).json({
+      id: savedFeedback.id,
+      user_id: savedFeedback.user_id,
+      feedback: savedFeedback.feedback,
+    });
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
 export default router;
