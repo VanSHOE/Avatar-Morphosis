@@ -143,7 +143,7 @@ const ResultPage = () => {
                                     <LoadingButton
                                         onClick={() => {
                                             const item2send = {
-                                                id: result.id
+                                                id: item.id
                                             };
                                             axios
                                                 .post('http://localhost:4000/upload/del_result', item2send, {
@@ -151,10 +151,8 @@ const ResultPage = () => {
                                                 })
                                                 .then((res) => {
                                                     console.log(res.data);
-                                                    let data = res.data;
-                                                    // Reverse data
-                                                    data.reverse();
-                                                    setResults(data);
+                                                    // Refresh page
+                                                    window.location.reload();
                                                 })
                                                 .catch((err) => {
                                                     console.log(err);

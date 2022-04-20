@@ -139,10 +139,8 @@ const AdminPage = () => {
                                                 })
                                                 .then((res) => {
                                                     console.log(res.data);
-                                                    let data = res.data;
-                                                    // Reverse data
-                                                    data.reverse();
-                                                    setResults(data);
+                                                    // refresh page
+                                                    window.location.reload();
                                                 })
                                                 .catch((err) => {
                                                     console.log(err);

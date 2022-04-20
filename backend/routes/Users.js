@@ -249,7 +249,7 @@ router.get("/get_details", auth, async (req, res) => {
 
 router.post("/feedback", auth, async (req, res) => {
   const { feedback } = req.body;
-  console.log(req.body);
+  console.log(feedback);
   // Simple validation
   if (!feedback) {
     return res.status(400).json({ msg: "Please enter all fields" });
@@ -261,8 +261,8 @@ router.post("/feedback", auth, async (req, res) => {
 
     const newFeedback = new Feedback({
       id: uuid(),
-      user_id: user.id,
-      feedback,
+      user: user.id,
+      text: feedback,
     });
 
     const savedFeedback = await newFeedback.save();
@@ -274,6 +274,7 @@ router.post("/feedback", auth, async (req, res) => {
       feedback: savedFeedback.feedback,
     });
   } catch (e) {
+    console.log(e);
     res.status(400).json({ msg: e.message });
   }
 });

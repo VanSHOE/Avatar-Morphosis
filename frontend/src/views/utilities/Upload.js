@@ -132,6 +132,7 @@ const UIColor = () => {
             .get('http://localhost:4000/upload/get_files', { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((res) => {
                 setFiles(res.data);
+
                 console.log(res.data);
             })
             .catch((err) => {
@@ -139,7 +140,7 @@ const UIColor = () => {
             });
     }, []);
     return (
-        <MainCard title="Media Upload" >
+        <MainCard title="Media Upload">
             <Grid container spacing={gridSpacing} alignItems="center" justifyContent="center">
                 <Grid item>
                     <Grid item xs={12} style={{ margin: 15 }}>
@@ -259,7 +260,7 @@ const UIColor = () => {
                                                     p: 3,
                                                     border: '1px solid grey',
                                                     borderRadius: 2,
-                                                    backgroundColor: file._id === selectedAudio._id ? 'skyblue' : 'primary.light'
+                                                    backgroundColor: file._id === selectedAudio._id ? 'skyblue' : 'grey'
                                                 }}
                                             >
                                                 <div>

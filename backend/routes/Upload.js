@@ -22,7 +22,7 @@ import { exit } from "process";
 import User from "../models/User.js";
 let cur_token =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNmNjZWJiMGYtMWNmNy00NWVkLTk3MDItOWM2NDQ3MDdlOGVmIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjQ5MTQ5NTkyfQ.i7PAr4jyNOxfXmdXtUyJXgv6ZdC2sxAmQ-uWXZZAHpg";
-const ngrok_URL = "http://277a-34-147-49-206.ngrok.io/";
+const ngrok_URL = "http://57c5-35-245-27-246.ngrok.io/";
 const storageEngine = multer.diskStorage({
   destination: "./uploads/",
   filename: function (req, file, callback) {
@@ -154,10 +154,8 @@ router.post("/del_result", auth, (req, res) => {
         Result.deleteOne({ id: req.body.id })
           .then((del) => {
             console.log(del);
-            Result.find().then((results) => {
-              res.status(200).json(results);
-            });
-            // res.status(200).json("Deleted");
+
+            res.status(200).json("Deleted");
           })
           .catch((err) => {
             console.log(err);

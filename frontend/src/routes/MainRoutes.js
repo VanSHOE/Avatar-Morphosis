@@ -29,6 +29,7 @@ const Demonstrate = Loadable(lazy(() => import('views/how_to')));
 const Plans = Loadable(lazy(() => import('views/plans')));
 const Profile = Loadable(lazy(() => import('views/profile')));
 const UploadImage = Loadable(lazy(() => import('views/upload/imageupload')));
+const Feedback = Loadable(lazy(() => import('views/utilities/Feedback')));
 // import Startpage from 'views/pages/authentication/authentication3/Startpage';
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -99,6 +100,10 @@ const MainRoutes = {
         {
             path: '/user/results-page',
             element: <Results />
+        },
+        {
+            path: '/feedback',
+            element: <Feedback />
         }
         // {
         //     path: '/user/user-videos',
