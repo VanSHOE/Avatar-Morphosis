@@ -1,6 +1,6 @@
 // assets
 import { IconBrandChrome, IconHelp, IconArtboard } from '@tabler/icons';
-
+import FeedbackIcon from '@mui/icons-material/Feedback';
 // constant
 const icons = { IconBrandChrome, IconHelp, IconArtboard };
 
@@ -25,6 +25,14 @@ const other = {
             url: '/how_to',
             icon: icons.IconHelp,
             breadcrumbs: false
+        },
+        {
+            id: 'feedback',
+            title: 'Feedback',
+            type: 'item',
+            url: '/feedback',
+            breadcrumbs: false,
+            icon: FeedbackIcon
         }
     ]
 };
