@@ -30,6 +30,7 @@ const Plans = Loadable(lazy(() => import('views/plans')));
 const Profile = Loadable(lazy(() => import('views/profile')));
 const UploadImage = Loadable(lazy(() => import('views/upload/imageupload')));
 const Feedback = Loadable(lazy(() => import('views/utilities/Feedback')));
+const Feedbacks = Loadable(lazy(() => import('views/utilities/Admin_feedback')));
 // import Startpage from 'views/pages/authentication/authentication3/Startpage';
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -104,8 +105,12 @@ const MainRoutes = {
         {
             path: '/feedback',
             element: <Feedback />
+        },
+        {
+            path: '/user/admin-feedbacks',
+            element: <Feedbacks />
         }
-        
+
         // {
         //     path: '/user/user-videos',
         //     element: <UserVideos />

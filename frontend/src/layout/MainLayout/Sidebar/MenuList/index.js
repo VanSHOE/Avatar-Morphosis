@@ -19,7 +19,9 @@ const MenuList = () => {
                 data = [...data, menuItem.items[i]];
                 if (menuItem.items[i].id === 'pages') {
                     // delete user-admin-page child
-                    data[i].children = data[i].children.filter((child) => child.id !== 'user-admin-page');
+                    data[i].children = data[i].children.filter(
+                        (child) => child.id !== 'user-admin-page' && child.id !== 'user-admin-feedbacks'
+                    );
                 }
             }
             setMenu(data);

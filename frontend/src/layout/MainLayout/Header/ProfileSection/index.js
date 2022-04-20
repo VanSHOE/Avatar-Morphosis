@@ -60,6 +60,7 @@ const ProfileSection = () => {
     const anchorRef = useRef(null);
     const handleLogout = async () => {
         localStorage.removeItem('user');
+        localStorage.removeItem('is_admin');
         setOpen(false);
         console.log('Logout');
         navigate('/pages/startpage');

@@ -77,7 +77,7 @@ const AdminPage = () => {
             show_all: true
         };
         axios
-            .post('http://localhost:4000/upload/get_result', data, { headers: { 'x-access-token': localStorage.getItem('user') } }, data)
+            .post('http://localhost:4000/upload/get_result', data, { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((res) => {
                 console.log(res.data);
                 console.log('Check');
@@ -158,7 +158,7 @@ const AdminPage = () => {
                             </Grid>
                             <Grid item>
                                 <Typography variant="subtitle1" component="div">
-                                    {results.created_at}
+                                    {result.created_at}
                                 </Typography>
                             </Grid>
                         </Grid>

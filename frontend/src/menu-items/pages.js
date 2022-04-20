@@ -17,9 +17,17 @@ const pages = {
     children: [
         {
             id: 'user-admin-page',
-            title: 'Admin Page',
+            title: 'Admin: Videos',
             type: 'item',
             url: '/user/admin-page',
+            icon: icons.IconUser,
+            breadcrumbs: false
+        },
+        {
+            id: 'user-admin-feedbacks',
+            title: 'Admin: Feedbacks',
+            type: 'item',
+            url: '/user/admin-feedbacks',
             icon: icons.IconUser,
             breadcrumbs: false
         },

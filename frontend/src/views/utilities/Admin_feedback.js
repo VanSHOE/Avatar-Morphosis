@@ -73,11 +73,8 @@ const FeedAdminPage = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        const data = {
-            show_all: true
-        };
         axios
-            .post('http://localhost:4000/upload/get_result', data, { headers: { 'x-access-token': localStorage.getItem('user') } }, data)
+            .get('http://localhost:4000/user/get_feedbacks', { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((res) => {
                 console.log(res.data);
                 console.log('Check');
@@ -107,25 +104,9 @@ const FeedAdminPage = () => {
                             <Grid item xs container direction="column" spacing={2}>
                                 <Grid item xs>
                                     <Typography gutterBottom variant="subtitle1" component="div">
-                                        {result.name}
+                                        {result.text}
                                     </Typography>
                                     <Typography sx={{ color: 'black' }}>Uploaded by: {result.user}</Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        Seen: {result.seen ? 'Yes' : 'No'}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    <LoadingButton
-                                        onClick={() => {
-                                            window.open('http://localhost:4000/' + result.path);
-                                        }}
-                                        endIcon={<SaveIcon />}
-                                        loadingPosition="end"
-                                        variant="contained"
-                                    // margin-left="2rem"
-                                    >
-                                        Open
-                                    </LoadingButton>
                                 </Grid>
                                 <Grid item>
                                     <LoadingButton
@@ -134,7 +115,7 @@ const FeedAdminPage = () => {
                                                 id: result.id
                                             };
                                             axios
-                                                .post('http://localhost:4000/upload/del_result', item2send, {
+                                                .post('http://localhost:4000/user/del_feedback', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {
@@ -150,7 +131,7 @@ const FeedAdminPage = () => {
                                         loadingPosition="end"
                                         variant="contained"
 
-                                    // margin-left="2rem"
+                                        // margin-left="2rem"
                                     >
                                         Remove
                                     </LoadingButton>
@@ -158,7 +139,7 @@ const FeedAdminPage = () => {
                             </Grid>
                             <Grid item>
                                 <Typography variant="subtitle1" component="div">
-                                    {results.created_at}
+                                    {result.created_at}
                                 </Typography>
                             </Grid>
                         </Grid>

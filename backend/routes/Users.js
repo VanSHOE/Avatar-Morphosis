@@ -279,4 +279,41 @@ router.post("/feedback", auth, async (req, res) => {
   }
 });
 
+router.get("/get_feedbacks", auth, async (req, res) => {
+  try {
+    // check if user is admin
+    const user = await User.findOne({ id: req.user.id });
+    if (!user) throw Error("User does not exist");
+
+    if (user.user_type !== "admin") {
+      return res.status(401).json({ msg: "You are not authorized" });
+    }
+
+    const feedbacks = await Feedback.find({});
+    if (!feedbacks) throw Error("No feedbacks found");
+    res.status(200).json(feedbacks);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
+router.post("/del_feedback", auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ id: req.user.id });
+    if (!user) throw Error("User does not exist");
+
+    if (user.user_type !== "admin") {
+      return res.status(401).json({ msg: "You are not authorized" });
+    }
+
+    const feedback = await Feedback.findOne({ id: req.body.id });
+    if (!feedback) throw Error("Feedback does not exist");
+
+    await Feedback.deleteOne({ id: req.body.id });
+    res.status(200).json({ msg: "Feedback deleted" });
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
 export default router;
