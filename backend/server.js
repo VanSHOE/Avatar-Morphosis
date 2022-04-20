@@ -6,9 +6,14 @@ import bodyParser from "body-parser";
 const PORT = process.env.PORT || 4000;
 // const expressfileupload = require("express-fileupload");
 import auth from "./middleware/auth.js";
+var http = require("http");
+var https = require("https");
+var privateKey = fs.readFileSync("/root/key.txt", "utf8");
+var certificate = fs.readFileSync("/root/mernvendorbuyer_me_chain.crt", "utf8");
 import UserRouter from "./routes/Users.js";
 import UploadRouter from "./routes/Upload.js";
 //app.use(cors());
+var credentials = { key: privateKey, cert: certificate };
 app.use(
   cors({
     origin: "*",
@@ -37,6 +42,11 @@ app.use(function (req, res, next) {
   res.setTimeout(0);
   next();
 });
-app.listen(PORT, function () {
-  console.log("Server is running on Port: " + PORT);
-});
+// app.listen(PORT, function () {
+//   console.log("Server is running on Port: " + PORT);
+// });
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(8080);
+httpsServer.listen(4000);
