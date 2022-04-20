@@ -4,11 +4,12 @@ const JWT_SECRET = "sl_myJwtSecret";
 
 export default (req, res, next) => {
   const token = req.header("x-access-token");
-
+  console.log(token);
   // Check for token
-  if (!token)
+  if (!token) {
+    console.log("YEG?");
     return res.status(401).json({ msg: "No token, authorization denied" });
-
+  }
   try {
     // Verify token
     console.log(token);
@@ -26,7 +27,7 @@ export default (req, res, next) => {
       next();
     });
   } catch (e) {
-    // console.log("Noo");
+    console.log("Noo");
     res.status(401).json({ msg: "Token is not valid" });
   }
 };

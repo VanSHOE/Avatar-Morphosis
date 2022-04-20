@@ -72,13 +72,20 @@ const ResultPage = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost/api/upload/get_result', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
-            console.log(res.data);
-            let data = res.data;
-            // Reverse data
-            data.reverse();
-            setResults(data);
-        });
+        const data = {
+            showall: false
+        };
+        axios
+            .post('http://localhost:4000/upload/get_result', data, {
+                headers: { 'x-access-token': localStorage.getItem('user') }
+            })
+            .then((res) => {
+                console.log(res.data);
+                let data = res.data;
+                // Reverse data
+                data.reverse();
+                setResults(data);
+            });
     }, []);
 
     return (
@@ -112,10 +119,10 @@ const ResultPage = () => {
                                             const item2send = {
                                                 id: item.id
                                             };
-                                            axios.post('http://localhost/api/upload/mark_seen', item2send, {
+                                            axios.post('http://localhost:4000/upload/mark_seen', item2send, {
                                                 headers: { 'x-access-token': localStorage.getItem('user') }
                                             });
-                                            window.open('http://localhost/api/' + item.path);
+                                            window.open('http://localhost:4000/' + item.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
@@ -123,6 +130,36 @@ const ResultPage = () => {
                                         // margin-left="2rem"
                                     >
                                         Open
+                                    </LoadingButton>
+                                </Grid>
+                                <Grid item>
+                                    <LoadingButton
+                                        onClick={() => {
+                                            const item2send = {
+                                                id: result.id
+                                            };
+                                            axios
+                                                .post('http://localhost:4000/upload/del_result', item2send, {
+                                                    headers: { 'x-access-token': localStorage.getItem('user') }
+                                                })
+                                                .then((res) => {
+                                                    console.log(res.data);
+                                                    let data = res.data;
+                                                    // Reverse data
+                                                    data.reverse();
+                                                    setResults(data);
+                                                })
+                                                .catch((err) => {
+                                                    console.log(err);
+                                                });
+                                        }}
+                                        endIcon={<SaveIcon />}
+                                        loadingPosition="end"
+                                        variant="contained"
+
+                                        // margin-left="2rem"
+                                    >
+                                        Remove
                                     </LoadingButton>
                                 </Grid>
                             </Grid>

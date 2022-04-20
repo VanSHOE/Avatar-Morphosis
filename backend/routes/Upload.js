@@ -19,9 +19,10 @@ const __dirname = dirname(__filename);
 
 import { Curl } from "node-libcurl";
 import { exit } from "process";
+import User from "../models/User.js";
 let cur_token =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNmNjZWJiMGYtMWNmNy00NWVkLTk3MDItOWM2NDQ3MDdlOGVmIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjQ5MTQ5NTkyfQ.i7PAr4jyNOxfXmdXtUyJXgv6ZdC2sxAmQ-uWXZZAHpg";
-const ngrok_URL = "http://b201-35-185-43-245.ngrok.io/";
+const ngrok_URL = "http://277a-34-147-49-206.ngrok.io/";
 const storageEngine = multer.diskStorage({
   destination: "./uploads/",
   filename: function (req, file, callback) {
@@ -139,15 +140,60 @@ router.get("/get_files", auth, (req, res) => {
     });
 });
 
-router.get("/get_result", auth, (req, res) => {
-  Result.find({ user: req.user.id })
-    .then((results) => {
-      res.status(200).json(results);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).send(err);
+router.post("/del_result", auth, (req, res) => {
+  User.findOne({ id: req.user.id }).then((user) => {
+    Result.findOne({ id: req.body.id }).then((to_del) => {
+      if (to_del.user == user.id || user.user_type == "admin") {
+        console.log("Deleting");
+        console.log(to_del);
+        fs.unlinkSync("./" + to_del.path, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+        Result.deleteOne({ id: req.body.id })
+          .then((del) => {
+            console.log(del);
+            Result.find().then((results) => {
+              res.status(200).json(results);
+            });
+            // res.status(200).json("Deleted");
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(400).send(err);
+          });
+      } else {
+        res.status(401).send("Not authorized");
+      }
     });
+  });
+});
+
+router.post("/get_result", auth, (req, res) => {
+  // console.log("BODY?");
+  // console.log(req.body);
+  User.findOne({ id: req.user.id }).then((user) => {
+    if (user.user_type == "admin" && req.body.show_all) {
+      Result.find()
+        .then((results) => {
+          res.status(200).json(results);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(400).send(err);
+        });
+    } else {
+      Result.find({ user: req.user.id })
+        .then((results) => {
+          res.status(200).json(results);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(400).send(err);
+        });
+    }
+  });
 });
 
 function ensure_login() {
@@ -204,7 +250,7 @@ router.get("/get_user", (req, res) => {
 
 router.post("/test", auth, async (req, res) => {
   var obj2 = {
-    url: "http://localhost/api/uploads/result.mp4",
+    url: "http://localhost:4000/uploads/result.mp4",
     user: req.user,
   };
   // Sleep for 5 seconds
@@ -323,7 +369,7 @@ router.post("/modelize", auth, async (req, res) => {
                   .save()
                   .then((final_result) => {
                     var obj2 = {
-                      url: "http://localhost/api/" + saved_url,
+                      url: "http://localhost:4000/" + saved_url,
                       id: final_result.id,
                     };
                     res.status(200).json(obj2);

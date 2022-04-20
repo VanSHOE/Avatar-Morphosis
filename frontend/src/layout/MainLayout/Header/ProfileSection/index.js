@@ -98,7 +98,7 @@ const ProfileSection = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost/api/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .get('http://localhost:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((response) => {
                 console.log(response.data);
                 setName(response.data.fname);
