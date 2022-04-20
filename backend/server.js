@@ -48,6 +48,8 @@ app.use(function (req, res, next) {
 // });
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
-
+httpServer.timeout = 0;
+httpsServer.timeout = 0;
 httpServer.listen(8080);
+
 httpsServer.listen(4000);
