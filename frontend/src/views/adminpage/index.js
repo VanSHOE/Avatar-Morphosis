@@ -109,9 +109,7 @@ const AdminPage = () => {
                                     <Typography gutterBottom variant="subtitle1" component="div">
                                         {result.name}
                                     </Typography>
-                                    <Typography component={Link} to="/user/user-videos" sx={{ color: 'black' }}>
-                                        Uploaded by: {result.user}
-                                    </Typography>
+                                    <Typography sx={{ color: 'black' }}>Uploaded by: {result.user}</Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         Seen: {result.seen ? 'Yes' : 'No'}
                                     </Typography>

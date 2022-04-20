@@ -76,6 +76,7 @@ router.post("/glogin", (req, res) => {
           id: user.id,
           name: user.name,
           email: user.email,
+          is_admin: user.user_type === "admin" ? true : false,
         },
       });
     })
@@ -112,6 +113,7 @@ router.post("/login", async (req, res) => {
         id: user.id,
         name: user.name,
         email: user.email,
+        is_admin: user.user_type === "admin" ? true : false,
       },
     });
   } catch (e) {
@@ -169,6 +171,7 @@ router.post("/register", async (req, res) => {
         email: savedUser.email,
         user_type: savedUser.user_type,
         photoURL: savedUser.photoURL,
+        is_admin: user.user_type === "admin" ? true : false,
       },
     });
   } catch (e) {
@@ -233,6 +236,7 @@ router.get("/get_details", auth, async (req, res) => {
         email: user.email,
         reg_date: user.register_date.toDateString(),
         photoURL: user.photoURL,
+        is_admin: user.user_type === "admin" ? true : false,
       });
     })
     .catch((err) => {

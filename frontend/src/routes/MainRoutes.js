@@ -48,38 +48,38 @@ const MainRoutes = {
             path: '/dashboard/help',
             element: <Help />
         },
-        {
-            path: '/utils/util-typography',
-            element: <UtilsTypography />
-        },
+        // {
+        //     path: '/utils/util-typography',
+        //     element: <UtilsTypography />
+        // },
         {
             path: '/utils/upload-file',
             element: <UploadImage />
         },
-        {
-            path: '/utils/util-image',
-            element: <UtilsImage />
-        },
-        {
-            path: '/utils/util-color',
-            element: <UtilsColor />
-        },
+        // {
+        //     path: '/utils/util-image',
+        //     element: <UtilsImage />
+        // },
+        // {
+        //     path: '/utils/util-color',
+        //     element: <UtilsColor />
+        // },
         {
             path: '/utils/util-upload',
             element: <UtilsUpload />
         },
-        {
-            path: '/utils/util-shadow',
-            element: <UtilsShadow />
-        },
-        {
-            path: '/icons/tabler-icons',
-            element: <UtilsTablerIcons />
-        },
-        {
-            path: '/icons/material-icons',
-            element: <UtilsMaterialIcons />
-        },
+        // {
+        //     path: '/utils/util-shadow',
+        //     element: <UtilsShadow />
+        // },
+        // {
+        //     path: '/icons/tabler-icons',
+        //     element: <UtilsTablerIcons />
+        // },
+        // {
+        //     path: '/icons/material-icons',
+        //     element: <UtilsMaterialIcons />
+        // },
         {
             path: '/how_to',
             element: <Demonstrate />
@@ -99,11 +99,11 @@ const MainRoutes = {
         {
             path: '/user/results-page',
             element: <Results />
-        },
-        {
-            path: '/user/user-videos',
-            element: <UserVideos />
         }
+        // {
+        //     path: '/user/user-videos',
+        //     element: <UserVideos />
+        // }
     ]
 };
 

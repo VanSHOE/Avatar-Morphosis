@@ -79,6 +79,7 @@ const FirebaseRegister = ({ ...others }) => {
             })
             .then((res) => {
                 localStorage.setItem('user', res.data.token);
+                localStorage.setItem('is_admin', response.data.user.is_admin);
                 console.log(res);
             });
     };

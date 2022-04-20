@@ -72,7 +72,7 @@ const FirebaseLogin = ({ ...others }) => {
             console.log(response.data);
             if (response.data.token) {
                 localStorage.setItem('user', response.data.token);
-
+                localStorage.setItem('is_admin', response.data.user.is_admin);
                 navigate('/dashboard/default');
             }
         });
@@ -92,6 +92,7 @@ const FirebaseLogin = ({ ...others }) => {
                 console.log(response);
                 if (response.data.token) {
                     localStorage.setItem('user', response.data.token);
+                    localStorage.setItem('is_admin', response.data.user.is_admin);
                     // alert(response.data.token);
                     navigate('/dashboard/default');
                 }
