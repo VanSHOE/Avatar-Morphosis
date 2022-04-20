@@ -35,7 +35,7 @@ const Feedback = () => {
             feedback: desc
         };
         axios
-            .post('http://localhost:4000/user/feedback', data, {
+            .post('http://https://mernvendorbuyer.me:4000/user/feedback', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {

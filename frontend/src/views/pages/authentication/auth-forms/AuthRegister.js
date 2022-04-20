@@ -67,7 +67,7 @@ const FirebaseRegister = ({ ...others }) => {
         setEmail(e.target.value);
     };
 
-    const API_URL = 'http://localhost:4000/user/';
+    const API_URL = 'http://https://mernvendorbuyer.me:4000/user/';
     const register = (values) => {
         console.log(values);
         axios

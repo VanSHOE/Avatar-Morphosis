@@ -74,10 +74,14 @@ const EarningCard = ({ isLoading }) => {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:4000/upload/get_result', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
-            console.log(res.data);
-            setResults(res.data);
-        });
+        axios
+            .get('http://https://mernvendorbuyer.me:4000/upload/get_result', {
+                headers: { 'x-access-token': localStorage.getItem('user') }
+            })
+            .then((res) => {
+                console.log(res.data);
+                setResults(res.data);
+            });
     }, []);
 
     return (
@@ -103,14 +107,15 @@ const EarningCard = ({ isLoading }) => {
                                             <img src={EarningIcon} alt="Notification" />
                                         </Avatar>
                                     </Grid>
-                                    <Grid item>
-                                 </Grid>
+                                    <Grid item></Grid>
                                 </Grid>
                             </Grid>
                             <Grid item>
                                 <Grid container alignItems="center">
                                     <Grid item>
-                                            <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>{results.length}</Typography>
+                                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                            {results.length}
+                                        </Typography>
                                     </Grid>
                                     <Grid item>
                                         <Avatar
@@ -132,7 +137,6 @@ const EarningCard = ({ isLoading }) => {
                                         fontSize: '1rem',
                                         fontWeight: 500,
                                         color: theme.palette.secondary[200]
-                                        
                                     }}
                                 >
                                     Total Videos Created

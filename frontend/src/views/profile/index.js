@@ -62,7 +62,9 @@ const Profile = () => {
         };
         console.log(newProfile);
         axios
-            .post('http://localhost:4000/user/update', newProfile, { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .post('http://https://mernvendorbuyer.me:4000/user/update', newProfile, {
+                headers: { 'x-access-token': localStorage.getItem('user') }
+            })
             .then((response) => {
                 console.log(response.data);
             })
@@ -70,7 +72,7 @@ const Profile = () => {
     };
     useEffect(() => {
         axios
-            .get('http://localhost:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .get('http://https://mernvendorbuyer.me:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((response) => {
                 console.log(response.data);
                 setfName(response.data.fname);

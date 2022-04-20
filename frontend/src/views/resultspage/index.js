@@ -78,7 +78,7 @@ const ResultPage = () => {
             showall: false
         };
         axios
-            .post('http://localhost:4000/upload/get_result', data, {
+            .post('http://https://mernvendorbuyer.me:4000/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -89,10 +89,12 @@ const ResultPage = () => {
                 setResults(data);
             });
 
-        axios.get('http://localhost:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
-            console.log(res.data);
-            setEmail(res.data.email);
-        });
+        axios
+            .get('http://https://mernvendorbuyer.me:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .then((res) => {
+                console.log(res.data);
+                setEmail(res.data.email);
+            });
     }, []);
 
     return (
@@ -126,10 +128,10 @@ const ResultPage = () => {
                                             const item2send = {
                                                 id: item.id
                                             };
-                                            axios.post('http://localhost:4000/upload/mark_seen', item2send, {
+                                            axios.post('http://https://mernvendorbuyer.me:4000/upload/mark_seen', item2send, {
                                                 headers: { 'x-access-token': localStorage.getItem('user') }
                                             });
-                                            window.open('http://localhost:4000/' + item.path);
+                                            window.open('http://https://mernvendorbuyer.me:4000/' + item.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
@@ -146,7 +148,7 @@ const ResultPage = () => {
                                                 id: item.id
                                             };
                                             axios
-                                                .post('http://localhost:4000/upload/del_result', item2send, {
+                                                .post('http://https://mernvendorbuyer.me:4000/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {

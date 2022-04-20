@@ -77,7 +77,9 @@ const AdminPage = () => {
             show_all: true
         };
         axios
-            .post('http://localhost:4000/upload/get_result', data, { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .post('http://https://mernvendorbuyer.me:4000/upload/get_result', data, {
+                headers: { 'x-access-token': localStorage.getItem('user') }
+            })
             .then((res) => {
                 console.log(res.data);
                 console.log('Check');
@@ -117,7 +119,7 @@ const AdminPage = () => {
                                 <Grid item>
                                     <LoadingButton
                                         onClick={() => {
-                                            window.open('http://localhost:4000/' + result.path);
+                                            window.open('http://https://mernvendorbuyer.me:4000/' + result.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
@@ -134,7 +136,7 @@ const AdminPage = () => {
                                                 id: result.id
                                             };
                                             axios
-                                                .post('http://localhost:4000/upload/del_result', item2send, {
+                                                .post('http://https://mernvendorbuyer.me:4000/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {
