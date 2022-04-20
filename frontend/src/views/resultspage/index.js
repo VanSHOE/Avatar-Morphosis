@@ -74,7 +74,10 @@ const ResultPage = () => {
     useEffect(() => {
         axios.get('http://localhost/api/upload/get_result', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
             console.log(res.data);
-            setResults(res.data);
+            let data = res.data;
+            // Reverse data
+            data.reverse();
+            setResults(data);
         });
     }, []);
 
