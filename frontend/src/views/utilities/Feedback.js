@@ -12,6 +12,7 @@ import AuthFooter from 'ui-component/cards/AuthFooter';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import Alert from '@mui/material/Alert';
 // assets
 
 // ================================|| AUTH3 - LOGIN ||================================ //
@@ -19,6 +20,7 @@ import axios from 'axios';
 const Feedback = () => {
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+    const [submitFeed , setSubmitFeed]= useState('');
     const useStyles = makeStyles(() => ({
         input1: {
             height: 50
@@ -40,6 +42,7 @@ const Feedback = () => {
             })
             .then((res) => {
                 console.log(res.data);
+                setSubmitFeed(true);
             })
             .catch((err) => {
                 console.log(err);
@@ -79,6 +82,9 @@ const Feedback = () => {
                                             Submit
                                         </Button>
                                     </Grid>
+                                    {submitFeed &&
+                                        <Alert variant="filled" severity="success">Your Response are Submitted!</Alert>
+                                    }
                                     <Grid item xs={12}>
                                         <Divider />
                                     </Grid>

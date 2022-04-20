@@ -15,6 +15,7 @@ import { gridSpacing } from 'store/constant';
 import axios from 'axios';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
+import CancelIcon from '@mui/icons-material/Cancel';
 // ===============================|| COLOR BOX ||=============================== //
 
 const ColorBox = ({ bgcolor, title, data, dark }) => (
@@ -129,7 +130,7 @@ const FeedAdminPage = () => {
                                                     console.log(err);
                                                 });
                                         }}
-                                        endIcon={<SaveIcon />}
+                                        endIcon={<CancelIcon />}
                                         loadingPosition="end"
                                         variant="contained"
 
