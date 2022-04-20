@@ -139,7 +139,7 @@ const UIColor = () => {
             });
     }, []);
     return (
-        <MainCard title="Media Upload" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
+        <MainCard title="Media Upload" >
             <Grid container spacing={gridSpacing} alignItems="center" justifyContent="center">
                 <Grid item>
                     <Grid item xs={12} style={{ margin: 15 }}>
