@@ -130,7 +130,7 @@ router.post("/add", auth, (req, res) => {
 });
 
 router.get("/get_files", auth, (req, res) => {
-  File.find({ user: req.user.id })
+  File.find({ $or: [{ user: req.user.id }, { user: "common" }] })
     .then((files) => {
       res.status(200).json(files);
     })
