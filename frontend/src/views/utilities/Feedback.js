@@ -37,7 +37,7 @@ const Feedback = () => {
             feedback: desc
         };
         axios
-            .post('http://https://https://mernvendorbuyer.me/api/user/feedback', data, {
+            .post('https://mernvendorbuyer.me/api/user/feedback', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {

@@ -58,7 +58,7 @@ const FirebaseLogin = ({ ...others }) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-    const API_URL = 'http://https://https://mernvendorbuyer.me/api/user/';
+    const API_URL = 'https://mernvendorbuyer.me/api/user/';
 
     const onLoginSuccess = (res) => {
         console.log('Login Success:', res.profileObj);

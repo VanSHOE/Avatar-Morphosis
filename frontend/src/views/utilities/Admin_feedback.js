@@ -75,7 +75,7 @@ const FeedAdminPage = () => {
 
     useEffect(() => {
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/user/get_feedbacks', {
+            .get('https://mernvendorbuyer.me/api/user/get_feedbacks', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -118,7 +118,7 @@ const FeedAdminPage = () => {
                                                 id: result.id
                                             };
                                             axios
-                                                .post('http://https://https://mernvendorbuyer.me/api/user/del_feedback', item2send, {
+                                                .post('https://mernvendorbuyer.me/api/user/del_feedback', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {

@@ -99,7 +99,7 @@ const ProfileSection = () => {
 
     useEffect(() => {
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/user/get_details', {
+            .get('https://mernvendorbuyer.me/api/user/get_details', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((response) => {

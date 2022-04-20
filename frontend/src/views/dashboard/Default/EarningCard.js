@@ -75,7 +75,7 @@ const EarningCard = ({ isLoading }) => {
 
     useEffect(() => {
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/upload/get_result', {
+            .get('https://mernvendorbuyer.me/api/upload/get_result', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {

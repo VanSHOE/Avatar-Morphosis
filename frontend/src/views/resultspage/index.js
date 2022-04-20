@@ -79,7 +79,7 @@ const ResultPage = () => {
             showall: false
         };
         axios
-            .post('http://https://https://mernvendorbuyer.me/api/upload/get_result', data, {
+            .post('https://mernvendorbuyer.me/api/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -91,7 +91,7 @@ const ResultPage = () => {
             });
 
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/user/get_details', {
+            .get('https://mernvendorbuyer.me/api/user/get_details', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -131,10 +131,10 @@ const ResultPage = () => {
                                             const item2send = {
                                                 id: item.id
                                             };
-                                            axios.post('http://https://https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
+                                            axios.post('https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
                                                 headers: { 'x-access-token': localStorage.getItem('user') }
                                             });
-                                            window.open('http://https://https://mernvendorbuyer.me/api/' + item.path);
+                                            window.open('https://mernvendorbuyer.me/api/' + item.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
@@ -151,7 +151,7 @@ const ResultPage = () => {
                                                 id: item.id
                                             };
                                             axios
-                                                .post('http://https://https://mernvendorbuyer.me/api/upload/del_result', item2send, {
+                                                .post('https://mernvendorbuyer.me/api/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {

@@ -51,7 +51,7 @@ const Image = () => {
         console.log(form);
 
         axios
-            .post('http://https://https://mernvendorbuyer.me/api/upload/upload', formData, {
+            .post('https://mernvendorbuyer.me/api/upload/upload', formData, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -66,7 +66,7 @@ const Image = () => {
                 };
 
                 axios
-                    .post('http://https://https://mernvendorbuyer.me/api/upload/add', newFile, {
+                    .post('https://mernvendorbuyer.me/api/upload/add', newFile, {
                         headers: { 'x-access-token': localStorage.getItem('user') }
                     })
                     .then((res2) => {
@@ -80,7 +80,7 @@ const Image = () => {
             /* <Grid item xs={4}>
                     {item.img ? (
                         <Grid item xs={12}>
-                            <img src={'http://https://https://mernvendorbuyer.me/api/' + item.img} width="100" />
+                            <img src={'https://mernvendorbuyer.me/api/' + item.img} width="100" />
                         </Grid>
                     ) : (
                         ''

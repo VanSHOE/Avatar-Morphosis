@@ -46,7 +46,7 @@ export default function RenderAvatar() {
 
     useEffect(() => {
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
+            .get('https://mernvendorbuyer.me/api/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } })
             .then((response) => {
                 console.log(response.data);
                 setAvatar(response.data.photoURL);

@@ -112,7 +112,7 @@ const UIColor = () => {
             name: name
         };
         axios
-            .post('http://https://https://mernvendorbuyer.me/api/upload/modelize', data, {
+            .post('https://mernvendorbuyer.me/api/upload/modelize', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -131,7 +131,7 @@ const UIColor = () => {
 
     useEffect(() => {
         axios
-            .get('http://https://https://mernvendorbuyer.me/api/upload/get_files', {
+            .get('https://mernvendorbuyer.me/api/upload/get_files', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -184,7 +184,7 @@ const UIColor = () => {
                                                     <img
                                                         style={{ width: '100%', height: '100%' }}
                                                         alt="Custom"
-                                                        src={'http://https://https://mernvendorbuyer.me/api/' + file.path}
+                                                        src={'https://mernvendorbuyer.me/api/' + file.path}
                                                     />
                                                 </div>
                                             </div>
@@ -299,10 +299,10 @@ const UIColor = () => {
                         <DialogContent>
                             <DialogContentText>Title: {name}</DialogContentText>
                             <DialogContentText>Image Selected</DialogContentText>
-                            <img src={'http://https://https://mernvendorbuyer.me/api/' + selectedImage.path} alt="Custom" height="250px" />
+                            <img src={'https://mernvendorbuyer.me/api/' + selectedImage.path} alt="Custom" height="250px" />
                             <DialogContentText>Audio Selected</DialogContentText>
                             <audio controls>
-                                <source src={'http://https://https://mernvendorbuyer.me/api/' + selectedAudio.path} type="audio/mpeg" />
+                                <source src={'https://mernvendorbuyer.me/api/' + selectedAudio.path} type="audio/mpeg" />
                                 <track kind="captions" />
                             </audio>
                         </DialogContent>
@@ -333,7 +333,7 @@ const UIColor = () => {
                                 const item2send = {
                                     id: downloadINFO[1]
                                 };
-                                axios.post('http://https://https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
+                                axios.post('https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                 });
                                 window.open(downloadINFO[0]);
