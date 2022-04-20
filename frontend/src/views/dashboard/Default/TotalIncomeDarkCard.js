@@ -74,7 +74,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                                     }}
                                     primary={
                                         <Typography variant="h4" sx={{ color: '#fff' }}>
-                                            0
+                                            NONE
                                         </Typography>
                                     }
                                     secondary={

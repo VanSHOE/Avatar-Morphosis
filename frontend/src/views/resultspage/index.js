@@ -14,6 +14,8 @@ import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 import { gridSpacing } from 'store/constant';
 import { LoadingButton } from '@mui/lab';
 import SaveIcon from '@mui/icons-material/Save';
+
+
 // ===============================|| COLOR BOX ||=============================== //
 
 const ColorBox = ({ bgcolor, title, data, dark }) => (
@@ -70,11 +72,18 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ResultPage = () => {
     const [results, setResults] = useState([]);
+    const [email, setEmail] = useState('');
+
+    
 
     useEffect(() => {
-        axios.get('http://localhost/api/upload/get_result', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
+        axios.get('http://localhost:4000/upload/get_result', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
             console.log(res.data);
             setResults(res.data);
+        });
+        axios.get('http://localhost:4000/user/get_details', { headers: { 'x-access-token': localStorage.getItem('user') } }).then((res) => {
+            console.log(res.data);
+            setEmail(res.data.email);
         });
     }, []);
 
@@ -109,10 +118,10 @@ const ResultPage = () => {
                                             const item2send = {
                                                 id: item.id
                                             };
-                                            axios.post('http://localhost/api/upload/mark_seen', item2send, {
+                                            axios.post('http://localhost:4000/upload/mark_seen', item2send, {
                                                 headers: { 'x-access-token': localStorage.getItem('user') }
                                             });
-                                            window.open('http://localhost/api/' + item.path);
+                                            window.open('http://localhost:4000/' + item.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"

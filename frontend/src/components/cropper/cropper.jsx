@@ -66,7 +66,7 @@ export default function RenderCropper({ handleCropper, setAvatar }) {
             const formdata = new FormData();
             formdata.append('croppedImage', convertedUrlToFile);
             // showBackdrop();
-            const res = await fetch('http://localhost/api/user/setProfilePic', {
+            const res = await fetch('http://localhost:4000/user/setProfilePic', {
                 method: 'POST',
                 body: formdata,
                 headers: { 'x-access-token': localStorage.getItem('user') }
