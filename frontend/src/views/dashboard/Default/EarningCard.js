@@ -74,8 +74,11 @@ const EarningCard = ({ isLoading }) => {
     };
 
     useEffect(() => {
+        const data = {
+            show_all: false
+        };
         axios
-            .get('https://mernvendorbuyer.me/api/upload/get_result', {
+            .post('https://mernvendorbuyer.me/api/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
