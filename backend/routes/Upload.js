@@ -107,7 +107,7 @@ router.post("/add", auth, (req, res) => {
   console.log("Verifying directory: " + new_path);
   ensureDirectoryExistence(new_path);
   new_path += uuid() + "_";
-  new_path += req.body.name + "." + ext;
+  new_path += req.body.name + ext;
   console.log("Final path: " + new_path);
   fs.rename("./" + req.body.path, new_path, () => {
     const newFile = new File({
