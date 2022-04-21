@@ -39,7 +39,7 @@ import { GoogleLogin } from 'react-google-login';
 import { Navigate } from 'react-router';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
-const clientId = '175728617617-huqbntmoc6q1ifvh2j5pgaiqgkujhd10.apps.googleusercontent.com';
+const clientId = '175728617617-h2p05ecv2m9jtjdevko3tq4mbtfcfe6p.apps.googleusercontent.com';
 const FirebaseLogin = ({ ...others }) => {
     const theme = useTheme();
     const scriptedRef = useScriptRef();
