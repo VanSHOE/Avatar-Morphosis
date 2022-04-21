@@ -154,7 +154,6 @@ router.post("/register", async (req, res) => {
       email,
       password: hash,
       user_type: "user",
-      photoURL,
     });
 
     const savedUser = await newUser.save();
@@ -173,7 +172,7 @@ router.post("/register", async (req, res) => {
         email: savedUser.email,
         user_type: savedUser.user_type,
         photoURL: savedUser.photoURL,
-        is_admin: user.user_type === "admin" ? true : false,
+        is_admin: savedUser.user_type === "admin" ? true : false,
       },
     });
   } catch (e) {
