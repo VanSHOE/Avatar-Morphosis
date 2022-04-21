@@ -55,7 +55,7 @@ function login() {
     });
 }
 const fileFilter = (req, file, callback) => {
-  let pattern = /jpeg|jpg|png|svg|m4a|mp4/; // reqex
+  let pattern = /jpg|png|svg|m4a|mp4/; // reqex
 
   if (pattern.test(path.extname(file.originalname))) {
     callback(null, true);
@@ -85,7 +85,7 @@ function ensureDirectoryExistence(filePath) {
 }
 
 router.post("/add", auth, (req, res) => {
-  //   console.log("hi");
+  console.log("hi");
   //   console.log(req);
 
   const audio_regex = /m4a/;
