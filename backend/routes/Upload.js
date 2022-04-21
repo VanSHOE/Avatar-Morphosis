@@ -103,9 +103,12 @@ router.post("/add", auth, (req, res) => {
     console.log(req.body);
     return res.status(400).send("Invalid extension");
   }
-  let new_path = "./uploads/" + req.user.id + "/files/" + uuid() + "_";
+  let new_path = "./uploads/" + req.user.id + "/files/";
+  console.log("Verifying directory: " + new_path);
   ensureDirectoryExistence(new_path);
-  new_path += req.body.name + ext;
+  new_path += uuid() + "_";
+  new_path += req.body.name + "." + ext;
+  console.log("Final path: " + new_path);
   fs.rename("./" + req.body.path, new_path, () => {
     const newFile = new File({
       name: req.body.name,
