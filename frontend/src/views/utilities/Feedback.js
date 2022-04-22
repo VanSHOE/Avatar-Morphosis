@@ -84,7 +84,7 @@ const Feedback = () => {
                                     </Grid>
                                     {submitFeed && (
                                         <Alert variant="filled" severity="success">
-                                            Your Response are Submitted!
+                                            Your Response is Submitted!
                                         </Alert>
                                     )}
                                     <Grid item xs={12}>
