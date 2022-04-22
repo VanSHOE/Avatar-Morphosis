@@ -11,7 +11,7 @@ const Demo = () => (
         {/* <Typography variant="body2">This is where a demo video of how to use the website will go</Typography> */}
 
         <iframe
-            src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+            src="https://www.youtube.com/embed/Ya2XJZz7N8w"
             frameBorder="0"
             allow="autoplay; encrypted-media"
             allowFullScreen
