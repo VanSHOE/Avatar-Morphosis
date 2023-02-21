@@ -35,6 +35,6 @@ To install and run the backend, navigate to the backend directory and run the fo
 
 `yarn ; node server.js`
 
-Please note that in order to use the tool, you will also need to set up a separate server with a heavy-duty GPU for processing. This server should be specified in the backend/server.js file.
+Please note that in order to use the tool, you will also need to set up a separate server with a heavy-duty GPU for processing that utilizes the repositories mentioned above. This server should be specified in the backend. 
 
 Additionally, it is recommended to set up SSL for the backend and frontend server in order to avoid browser warnings and blockages. Please refer to the appropriate SSL documentation for your server and configuration.
