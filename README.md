@@ -39,10 +39,10 @@ MERN stands for MongoDB, Express.js, React, and Node.js. It is a full-stack Java
 MERN is a popular choice for building modern web applications because it provides a unified and consistent development experience across the entire stack. It also allows developers to take advantage of the latest trends in front-end development, such as component-based architecture and reactive programming. 
 
 ### Installation
-
+Simply run `sudo docker compose up` and the frontend and backend will be running. (Do note that this does not include the GPU server)
 #### Frontend
 To install the frontend of this tool, simply clone the repository and run the following command:
-`yarn ; ./deploy.sh`
+`yarn ; yarn start`
 
 #### Backend
 To install and run the backend, navigate to the backend directory and run the following command:
