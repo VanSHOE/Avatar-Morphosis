@@ -1,5 +1,5 @@
 # Image-Audio Lip Sync
-The deployed version of this project already exists [here](https://mernvendorbuyer.me)
+We have deployed this project [here](https://mernvendorbuyer.me).
 ### Introduction
 This project takes in an image and an audio file and maps the audio to the image, creating a lip-synced video. It utilizes two existing open-source repositories: [Wav2Lip](https://github.com/Rudrabha/Wav2Lip) for audio-to-video lip syncing and [One-Shot Free-View Neural Talking-Head Synthesis](https://github.com/zhanglonghao1992/One-Shot_Free-View_Neural_Talking_Head_Synthesis) for generating a video from a single image.
 
