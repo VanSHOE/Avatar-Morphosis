@@ -1,4 +1,5 @@
 # Image-Audio Lip Sync
+The deployed version of this project already exists [here](https://mernvendorbuyer.me)
 ### Introduction
 This project takes in an image and an audio file and maps the audio to the image, creating a lip-synced video. It utilizes two existing open-source repositories: [Wav2Lip](https://github.com/Rudrabha/Wav2Lip) for audio-to-video lip syncing and [One-Shot Free-View Neural Talking-Head Synthesis](https://github.com/zhanglonghao1992/One-Shot_Free-View_Neural_Talking_Head_Synthesis) for generating a video from a single image.
 
@@ -24,8 +25,21 @@ Please note that the processing time may vary depending on the size and complexi
 
 For more detailed instructions on how to set up and configure this tool, please refer to the "Installation" and "Configuration" sections of this README file.
 
+### Technology Stack
+MERN stands for MongoDB, Express.js, React, and Node.js. It is a full-stack JavaScript framework that enables developers to build web applications from front to back using a single programming language. 
+
+- MongoDB is a NoSQL database that stores data in a JSON-like format, making it easy to work with data in JavaScript.
+
+- Express.js is a web application framework for Node.js that provides a set of features for building web applications, including middleware, routing, and templating.
+
+- React is a JavaScript library for building user interfaces that allows developers to create reusable UI components.
+
+- Node.js is a server-side JavaScript runtime environment that enables developers to build scalable, high-performance web applications.
+
+MERN is a popular choice for building modern web applications because it provides a unified and consistent development experience across the entire stack. It also allows developers to take advantage of the latest trends in front-end development, such as component-based architecture and reactive programming. 
+
 ### Installation
-The deployed version of this server already exists at: mernvendorbuyer.me
+
 #### Frontend
 To install the frontend of this tool, simply clone the repository and run the following command:
 `yarn ; ./deploy.sh`
