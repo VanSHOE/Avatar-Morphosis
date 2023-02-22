@@ -22,7 +22,7 @@ import { exit } from "process";
 import User from "../models/User.js";
 let cur_token =
   "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiNmNjZWJiMGYtMWNmNy00NWVkLTk3MDItOWM2NDQ3MDdlOGVmIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNjQ5MTQ5NTkyfQ.i7PAr4jyNOxfXmdXtUyJXgv6ZdC2sxAmQ-uWXZZAHpg";
-const ngrok_URL = "http://a41e-104-196-15-22.ngrok.io/";
+const ngrok_URL = "http://457359bc3a7b.ngrok.io/";
 const storageEngine = multer.diskStorage({
   destination: "./uploads/",
   filename: function (req, file, callback) {
@@ -32,28 +32,28 @@ const storageEngine = multer.diskStorage({
     );
   },
 });
-function login() {
-  const url = "http://canvas.iiit.ac.in/lipsyncuc3/auth/login";
-  const params = new URLSearchParams();
-  params.append("username", "3davatar@lipsync.com");
-  params.append("password", "password");
+// function login() {
+//   const url = "http://canvas.iiit.ac.in/lipsyncuc3/auth/login";
+//   const params = new URLSearchParams();
+//   params.append("username", "3davatar@lipsync.com");
+//   params.append("password", "password");
 
-  const config = {
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  };
+//   const config = {
+//     headers: {
+//       "Content-Type": "application/x-www-form-urlencoded",
+//     },
+//   };
 
-  axios
-    .post(url, params, config)
-    .then((result) => {
-      console.log("Success");
-      cur_token = result.data.access_token;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+//   axios
+//     .post(url, params, config)
+//     .then((result) => {
+//       console.log("ss");
+//       cur_token = result.data.access_token;
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// }
 const fileFilter = (req, file, callback) => {
   let pattern = /jpg|png|svg|m4a|mp4/; // reqex
 
@@ -195,23 +195,23 @@ router.post("/get_result", auth, (req, res) => {
   });
 });
 
-function ensure_login() {
-  const url = "http://canvas.iiit.ac.in/lipsyncuc3/users/me";
-  axios
-    .get(url, {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "bearer " + cur_token,
-      },
-    })
-    .then((response) => {
-      console.log("Already Logged in");
-    })
-    .catch((err) => {
-      console.log("Could not log in, logging in now!");
-      login();
-    });
-}
+// function ensure_login() {
+//   const url = "http://canvas.iiit.ac.in/lipsyncuc3/users/me";
+//   axios
+//     .get(url, {
+//       headers: {
+//         "Content-type": "application/json",
+//         Authorization: "bearer " + cur_token,
+//       },
+//     })
+//     .then((response) => {
+//       console.log("Already Logged in");
+//     })
+//     .catch((err) => {
+//       console.log("Could not log in, logging in now!");
+//       login();
+//     });
+// }
 router.get("/get_user", (req, res) => {
   //   console.log("hi");
   //   console.log(req);
@@ -274,7 +274,7 @@ router.post("/mark_seen", auth, (req, res) => {
 });
 
 router.post("/modelize", auth, async (req, res) => {
-  ensure_login();
+  // ensure_login();
   // Check if eq has audio_path
   if (req.body.audio_path == null || req.body.image_path == null) {
     return res.status(400).send("Files not sent properly");
@@ -288,6 +288,8 @@ router.post("/modelize", auth, async (req, res) => {
   let url = ngrok_URL;
   const formData = new FormData();
   formData.append("file", fs.createReadStream(req.body.image_path));
+  // append audio
+  formData.append("audio", fs.createReadStream(req.body.audio_path));
   try {
     console.log("Beginning");
     const getFile = await axios.post(url, formData, {
@@ -296,98 +298,46 @@ router.post("/modelize", auth, async (req, res) => {
       },
     });
     console.log(getFile.data);
-    const interm_path = "./uploads/interm.mp4";
-    const file = fs.createWriteStream(interm_path);
-    const request = http.get(url + "uploads/result.mp4", function (response) {
+    const fileName = uuid();
+    const interm_path = "uploads/" + req.user.id + "/results/" + fileName + ".mp4";
+    ensureDirectoryExistence(interm_path);
+
+    const file = fs.createWriteStream("./" + interm_path);
+
+    const request = http.get(url + "uploads/result_voice.mp4", function (response) {
       response.pipe(file);
       // after download completed close filestream
       file.on("finish", () => {
-        console.log("Lipsyncing");
+        // console.log("Lipsyncing");
         file.close();
         console.log("Download of result Completed");
         axios.post(url + "del_result");
 
-        const url2 = "http://canvas.iiit.ac.in/lipsyncuc3/predict";
-        const curl = new Curl();
-        const close = curl.close.bind(curl);
+        // after download completed close filestream
+        console.log("Download Completed");
 
-        curl.setOpt(Curl.option.URL, url2);
-        curl.setOpt(Curl.option.HTTPHEADER, [
-          "Content-type: multipart/form-data",
-          "Authorization: bearer " + cur_token,
-          "accept: application/json",
-        ]);
+        const newResult = new Result({
+          id: uuid(),
+          name: req.body.name ? req.body.name : fileName,
+          path: interm_path,
+          user: req.user.id,
+        });
 
-        const audio_path = req.body.audio_path;
-        const video_path = interm_path;
-        if (!fs.existsSync(audio_path) || !fs.existsSync(video_path)) {
-          res.status(400).send("File not found");
-          return;
-        }
-        curl.setOpt(Curl.option.HTTPPOST, [
-          { name: "audio", file: "./" + audio_path },
-          { name: "video", file: "./" + video_path },
-        ]);
-
-        curl.on("end", function (statusCode, body, headers) {
-          console.log("Status:", statusCode);
-          if (parseInt(statusCode) === 401) {
-            console.log("Please try again");
-            login();
-          }
-          console.log("Headers:", headers);
-          console.log("Body:", body);
-          var obj = JSON.parse(body);
-          var keys = Object.keys(obj);
-          console.log("Now printing just the url");
-          ensure_login();
-          const final_name = uuid();
-          let saved_url =
-            "uploads/" + req.user.id + "/results/" + final_name + ".mp4";
-          ensureDirectoryExistence(saved_url);
-          const final_result = fs.createWriteStream("./" + saved_url);
-          const request2 = http.get(obj[keys[0]], function (response) {
-            http.get(response.headers.location, (res2) => {
-              res2.pipe(final_result);
-              // after download completed close filestream
-              final_result.on("finish", () => {
-                final_result.close();
-                console.log("Download Completed");
-                console.log(obj[keys[0]]);
-                console.log("Printing over");
-
-                const newResult = new Result({
-                  id: uuid(),
-                  name: req.body.name ? req.body.name : final_name,
-                  path: saved_url,
-                  user: req.user.id,
-                });
-
-                console.log(newResult);
-                newResult
-                  .save()
-                  .then((final_result) => {
-                    var obj2 = {
-                      url: "https://mernvendorbuyer.me/api/" + saved_url,
-                      id: final_result.id,
-                    };
-                    res.status(200).json(obj2);
-                    close();
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                    res.status(400).send(err);
-                  });
-              });
-            });
+        console.log(newResult);
+        newResult
+          .save()
+          .then((final_result) => {
+            var obj2 = {
+              url: "https://mernvendorbuyer.me/api/" + interm_path,
+              id: final_result.id,
+            };
+            res.status(200).json(obj2);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(400).send(err);
           });
-        });
-        curl.on("error", function (err) {
-          console.log("error", err);
-          console.log("NOOO");
-          close();
-        });
-        curl.perform();
+
         console.log("Over");
       });
     });

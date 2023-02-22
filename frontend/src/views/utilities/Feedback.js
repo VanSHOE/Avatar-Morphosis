@@ -37,7 +37,7 @@ const Feedback = () => {
             feedback: desc
         };
         axios
-            .post('https://mernvendorbuyer.me/api/user/feedback', data, {
+            .post('http://localhost:4000/user/feedback', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -74,7 +74,7 @@ const Feedback = () => {
                                             variant="outlined"
                                             value={desc}
                                             onChange={onChangeDesc}
-                                            // InputProps={{ classes: { input: classes.input1 } }}
+                                        // InputProps={{ classes: { input: classes.input1 } }}
                                         />
                                     </Grid>
                                     <Grid item alignItems="center" xs={12} sx={{ m: 3, mt: 1 }}>

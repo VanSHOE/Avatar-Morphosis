@@ -79,7 +79,7 @@ const AdminPage = () => {
             show_all: true
         };
         axios
-            .post('https://mernvendorbuyer.me/api/upload/get_result', data, {
+            .post('http://localhost:4000/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -121,12 +121,12 @@ const AdminPage = () => {
                                 <Grid item>
                                     <LoadingButton
                                         onClick={() => {
-                                            window.open('https://mernvendorbuyer.me/api/' + result.path);
+                                            window.open('http://localhost:4000/' + result.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
                                         variant="contained"
-                                        // margin-left="2rem"
+                                    // margin-left="2rem"
                                     >
                                         Open
                                     </LoadingButton>
@@ -138,7 +138,7 @@ const AdminPage = () => {
                                                 id: result.id
                                             };
                                             axios
-                                                .post('https://mernvendorbuyer.me/api/upload/del_result', item2send, {
+                                                .post('http://localhost:4000/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {
@@ -154,7 +154,7 @@ const AdminPage = () => {
                                         loadingPosition="end"
                                         variant="contained"
 
-                                        // margin-left="2rem"
+                                    // margin-left="2rem"
                                     >
                                         Remove
                                     </LoadingButton>

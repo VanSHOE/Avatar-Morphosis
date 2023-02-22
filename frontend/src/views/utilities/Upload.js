@@ -112,7 +112,7 @@ const UIColor = () => {
             name: name
         };
         axios
-            .post('https://mernvendorbuyer.me/api/upload/modelize', data, {
+            .post('http://localhost:4000/upload/modelize', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -131,7 +131,7 @@ const UIColor = () => {
 
     useEffect(() => {
         axios
-            .get('https://mernvendorbuyer.me/api/upload/get_files', {
+            .get('http://localhost:4000/upload/get_files', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -184,7 +184,7 @@ const UIColor = () => {
                                                     <img
                                                         style={{ width: '100%', height: '100%' }}
                                                         alt="Custom"
-                                                        src={'https://mernvendorbuyer.me/api/' + file.path}
+                                                        src={'http://localhost:4000/' + file.path}
                                                     />
                                                 </div>
                                             </div>
@@ -287,10 +287,10 @@ const UIColor = () => {
                         onClick={() => handleClickToOpen()}
                         variant="contained"
                         color="primary"
-                        // endIcon={<SendIcon />}
-                        // loading={loading}
-                        // loadingPosition="end"
-                        // variant="contained"
+                    // endIcon={<SendIcon />}
+                    // loading={loading}
+                    // loadingPosition="end"
+                    // variant="contained"
                     >
                         Continue
                     </Button>
@@ -299,10 +299,10 @@ const UIColor = () => {
                         <DialogContent>
                             <DialogContentText>Title: {name}</DialogContentText>
                             <DialogContentText>Image Selected</DialogContentText>
-                            <img src={'https://mernvendorbuyer.me/api/' + selectedImage.path} alt="Custom" height="250px" />
+                            <img src={'http://localhost:4000/' + selectedImage.path} alt="Custom" height="250px" />
                             <DialogContentText>Audio Selected</DialogContentText>
                             <audio controls>
-                                <source src={'https://mernvendorbuyer.me/api/' + selectedAudio.path} type="audio/mpeg" />
+                                <source src={'http://localhost:4000/' + selectedAudio.path} type="audio/mpeg" />
                                 <track kind="captions" />
                             </audio>
                         </DialogContent>
@@ -333,7 +333,7 @@ const UIColor = () => {
                                 const item2send = {
                                     id: downloadINFO[1]
                                 };
-                                axios.post('https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
+                                axios.post('http://localhost:4000/upload/mark_seen', item2send, {
                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                 });
                                 window.open(downloadINFO[0]);

@@ -79,7 +79,7 @@ const ResultPage = () => {
             showall: false
         };
         axios
-            .post('https://mernvendorbuyer.me/api/upload/get_result', data, {
+            .post('http://localhost:4000/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -91,7 +91,7 @@ const ResultPage = () => {
             });
 
         axios
-            .get('https://mernvendorbuyer.me/api/user/get_details', {
+            .get('http://localhost:4000/user/get_details', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -131,15 +131,15 @@ const ResultPage = () => {
                                             const item2send = {
                                                 id: item.id
                                             };
-                                            axios.post('https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
+                                            axios.post('http://localhost:4000/upload/mark_seen', item2send, {
                                                 headers: { 'x-access-token': localStorage.getItem('user') }
                                             });
-                                            window.open('https://mernvendorbuyer.me/api/' + item.path);
+                                            window.open('http://localhost:4000/' + item.path);
                                         }}
                                         endIcon={<SaveIcon />}
                                         loadingPosition="end"
                                         variant="contained"
-                                        // margin-left="2rem"
+                                    // margin-left="2rem"
                                     >
                                         Open
                                     </LoadingButton>
@@ -151,7 +151,7 @@ const ResultPage = () => {
                                                 id: item.id
                                             };
                                             axios
-                                                .post('https://mernvendorbuyer.me/api/upload/del_result', item2send, {
+                                                .post('http://localhost:4000/upload/del_result', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 })
                                                 .then((res) => {
@@ -167,7 +167,7 @@ const ResultPage = () => {
                                         loadingPosition="end"
                                         variant="contained"
 
-                                        // margin-left="2rem"
+                                    // margin-left="2rem"
                                     >
                                         Remove
                                     </LoadingButton>

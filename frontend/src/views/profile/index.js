@@ -62,7 +62,7 @@ const Profile = () => {
         };
         console.log(newProfile);
         axios
-            .post('https://mernvendorbuyer.me/api/user/update', newProfile, {
+            .post('http://localhost:4000/user/update', newProfile, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((response) => {
@@ -72,7 +72,7 @@ const Profile = () => {
     };
     useEffect(() => {
         axios
-            .get('https://mernvendorbuyer.me/api/user/get_details', {
+            .get('http://localhost:4000/user/get_details', {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((response) => {

@@ -68,7 +68,7 @@ const NotificationList = () => {
             show_all: false
         };
         axios
-            .post('https://mernvendorbuyer.me/api/upload/get_result', data, {
+            .post('http://localhost:4000/upload/get_result', data, {
                 headers: { 'x-access-token': localStorage.getItem('user') }
             })
             .then((res) => {
@@ -214,10 +214,10 @@ const NotificationList = () => {
                                                 const item2send = {
                                                     id: result.id
                                                 };
-                                                axios.post('https://mernvendorbuyer.me/api/upload/mark_seen', item2send, {
+                                                axios.post('http://localhost:4000/upload/mark_seen', item2send, {
                                                     headers: { 'x-access-token': localStorage.getItem('user') }
                                                 });
-                                                window.open('https://mernvendorbuyer.me/api/' + result.path);
+                                                window.open('http://localhost:4000/' + result.path);
                                             }}
                                             endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}
                                         >

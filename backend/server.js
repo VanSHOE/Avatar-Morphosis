@@ -9,12 +9,12 @@ import auth from "./middleware/auth.js";
 import fs from "fs";
 import http from "http";
 import https from "https";
-var privateKey = fs.readFileSync("/root/key.txt", "utf8");
-var certificate = fs.readFileSync("/root/mernvendorbuyer_me_chain.crt", "utf8");
+// var privateKey = fs.readFileSync("/root/key.txt", "utf8");
+// var certificate = fs.readFileSync("/root/mernvendorbuyer_me_chain.crt", "utf8");
 import UserRouter from "./routes/Users.js";
 import UploadRouter from "./routes/Upload.js";
 //app.use(cors());
-var credentials = { key: privateKey, cert: certificate };
+// var credentials = { key: privateKey, cert: certificate };
 app.use(
   cors({
     origin: "*",
@@ -43,13 +43,13 @@ app.use(function (req, res, next) {
   res.setTimeout(0);
   next();
 });
-// app.listen(PORT, function () {
-//   console.log("Server is running on Port: " + PORT);
-// });
-var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-httpServer.timeout = 0;
-httpsServer.timeout = 0;
-httpServer.listen(8080);
+app.listen(PORT, function () {
+  console.log("Server is running on Port: " + PORT);
+});
+// var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(credentials, app);
+// httpServer.timeout = 0;
+// httpsServer.timeout = 0;
+// httpServer.listen(8080);
 
-httpsServer.listen(4000);
+// httpsServer.listen(4000);
